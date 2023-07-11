@@ -1,0 +1,70 @@
+//https://leetcode.com/problems/median-of-two-sorted-arrays/description/
+double findMedianSortedArrays(int* nums1, int nums1Size, int* nums2, 
+int nums2Size){
+int arr1[1000],arr2[1000];
+
+for (int i = 0; i < nums1Size; i++) {
+    arr1[i] = nums1[i];
+}
+
+for (int i = 0; i < nums2Size; i++) {
+    arr2[i] = nums2[i];
+}
+
+int arr3[2000];
+//insertion
+//1
+int i=0,j=0,k=0;
+
+while(i<nums1Size && j<nums2Size){
+	if(arr1[i]<=arr2[j]){
+		
+		arr3[k++]=arr1[i++];
+	}
+	else{
+		arr3[k++]=arr2[j++];
+	}
+}
+
+while(i<nums1Size){
+    	arr3[k++]=arr1[i++];
+}
+
+
+while(j<nums2Size){
+    	arr3[k++]=arr2[j++];
+}
+
+
+
+////sort the array
+//for (int i=0;i<k-1;i++){
+////bubblesort	
+//	for(int j=0;j<k-1-i;j++){
+//		
+//		if(arr3[j]>arr3[j+1]){
+//			
+//			temp=arr3[j];
+//			arr3[j]=arr3[i];
+//			arr3[j+1]=temp;
+//			
+//		}
+//	}
+//}
+
+int size=nums1Size+nums2Size;
+double median;
+if (size%2==0){
+	int mid=size/2;
+	median=(double)(arr3[mid-1]+arr3[mid])/2.0;
+	
+}
+else{
+	median=(double)arr3[size/2];
+	
+}
+
+return median;
+
+}
+
